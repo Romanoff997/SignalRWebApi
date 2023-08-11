@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    var strTitle = "City Manager";
+    ViewData["Title"] = strTitle;
+}
+
+<div>
+
+    <a asp-action="Create">Add City </a>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model=>Model.listCity[0].name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model=>Model.listCity[0].population)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model=>Model.listCity[0].fondation)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model.listCity.Count > 0)
+                    foreach (var emp in Model.listCity)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem=>emp.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem=>emp.population)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem=>emp.fondation)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@emp.id">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@emp.id">Delete</a><br />
+                            </td>
+                        </tr>
+                    }
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>

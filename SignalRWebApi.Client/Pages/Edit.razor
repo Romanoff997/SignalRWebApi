@@ -1,0 +1,48 @@
+﻿@page "/edit/{cityId}"
+
+@inject HttpClient Http;
+@inject CitiesService _citiesService;
+<PageTitle>Edit City</PageTitle>
+
+<h3>Edit</h3>
+
+<EditForm Model="@newCity" OnValidSubmit="updateCity">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="fondation">Name</label>
+        <InputText id="name" @bind-Value="newCity.name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="fondation">Fondation</label>
+        <InputDate id="fondation" @bind-Value="newCity.fondation" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="population">fsdf</label>
+        <InputNumber id="population" @bind-Value="newCity.population" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <ValidationSummary />
+</EditForm>
+
+
+
+@code {
+
+    public City newCity { get; set; }
+    [Parameter]
+    public string cityId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        newCity = await _citiesService.GetCity(new Guid(cityId));
+        StateHasChanged();
+    }
+
+    private async Task updateCity()
+    {
+        await _citiesService.UpdateCity(newCity);
+        Navigation.NavigateTo("/");
+    }
+
+
+}

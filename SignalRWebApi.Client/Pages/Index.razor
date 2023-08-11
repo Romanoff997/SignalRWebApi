@@ -1,0 +1,120 @@
+﻿@page "/"
+@inject HttpClient Http;
+@inject CitiesService _citiesService;
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Index</PageTitle>
+
+<h1>List City</h1>
+<div class="row">
+    <div class="col">
+
+        <h5>is all cities</h5>
+    </div>
+
+</div>
+@if (cities == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>population</th>
+                <th>fondation</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var city in cities)
+            {
+                <tr>
+                    <td>@city.name</td>
+                    <td>@city.population</td>
+                    <td>@city.fondation</td>
+                    <td>
+                        <button @onclick="() => cityEdit(city.id)">Изменить</button>
+                        <span>  </span>
+                        <button @onclick="() => cityDelete(city.id)">Удалить</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+
+
+@code {
+    [Inject] private IJSRuntime _js { get; set; }
+    private List<City> cities = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _citiesService.CityUpdated += cityUpdated;
+        _citiesService.CityCreated += cityCreated;
+        _citiesService.CityDeleted += cityDeleted;
+
+        var dotNetReference = DotNetObjectReference.Create(this);
+        await _js.InvokeVoidAsync("window.blazor_setExitEvent", dotNetReference);
+
+        await GetCityList();
+        await base.OnInitializedAsync();
+    }
+    private async Task GetCityList()
+    {
+        cities = await _citiesService.GetListCity();
+    }
+
+    private async Task cityEdit(Guid id)
+    {
+        Navigation.NavigateTo($"/edit/{id}");
+    }
+    private async Task cityDelete(Guid id)
+    {
+        await _citiesService.DeleteCity(id);
+    }
+
+    private void cityCreated(City city)
+    {
+        cities.Add(city);
+        StateHasChanged();
+    }
+
+    private void cityUpdated(City city)
+    {
+        var existingItemIndex = cities.FindIndex(item => item.id == city.id);
+        if (existingItemIndex != -1)
+        {
+            cities[existingItemIndex] = city;
+            StateHasChanged();
+        }
+    }
+
+    private void cityDeleted(Guid id)
+    {
+        var deletedItem = cities.Find(item => item.id == id);
+        if (deletedItem != null)
+        {
+            cities.Remove(deletedItem);
+            StateHasChanged();
+        }
+    }
+
+    protected void Dispose()
+    {
+        _citiesService.CityUpdated -= cityUpdated;
+        _citiesService.CityCreated -= cityCreated;
+        _citiesService.CityDeleted -= cityDeleted;
+        _citiesService?.Dispose();
+    }
+
+    [JSInvokable("IndexDispose")]
+    public void IndexDispose()
+    {
+        Dispose();
+    }
+}
