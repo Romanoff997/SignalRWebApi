@@ -21,19 +21,6 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        window.blazor_setExitEvent = function (dotNetHelper) {
-            blazor_dotNetHelper = dotNetHelper;
-            window.addEventListener("beforeunload", blazor_SetСlosed);
-        }
-
-        var blazor_dotNetHelper;
-
-        window.blazor_SetСlosed = function () {
-            blazor_dotNetHelper.invokeMethodAsync('IndexDispose')
-            blazor_dotNetHelper.dispose();
-        }
-    </script>
 </body>
 
 </html>

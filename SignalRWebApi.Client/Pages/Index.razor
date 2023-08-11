@@ -2,6 +2,7 @@
 @inject HttpClient Http;
 @inject CitiesService _citiesService;
 @inject IJSRuntime JSRuntime
+@implements IDisposable
 
 <PageTitle>Index</PageTitle>
 
@@ -49,7 +50,6 @@ else
 
 
 @code {
-    [Inject] private IJSRuntime _js { get; set; }
     private List<City> cities = new();
 
     protected override async Task OnInitializedAsync()
@@ -57,9 +57,6 @@ else
         _citiesService.CityUpdated += cityUpdated;
         _citiesService.CityCreated += cityCreated;
         _citiesService.CityDeleted += cityDeleted;
-
-        var dotNetReference = DotNetObjectReference.Create(this);
-        await _js.InvokeVoidAsync("window.blazor_setExitEvent", dotNetReference);
 
         await GetCityList();
         await base.OnInitializedAsync();
@@ -104,7 +101,7 @@ else
         }
     }
 
-    protected void Dispose()
+    public virtual void Dispose()
     {
         _citiesService.CityUpdated -= cityUpdated;
         _citiesService.CityCreated -= cityCreated;
@@ -112,9 +109,5 @@ else
         _citiesService?.Dispose();
     }
 
-    [JSInvokable("IndexDispose")]
-    public void IndexDispose()
-    {
-        Dispose();
-    }
+
 }
