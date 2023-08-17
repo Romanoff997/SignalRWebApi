@@ -1,6 +1,4 @@
 ﻿@page "/"
-@inject HttpClient Http;
-@inject CitiesService _citiesService;
 @inject IJSRuntime JSRuntime
 @implements IDisposable
 
@@ -73,6 +71,7 @@ else
     private async Task cityDelete(Guid id)
     {
         await _citiesService.DeleteCity(id);
+        cityDeleted(id);
     }
 
     private void cityCreated(City city)

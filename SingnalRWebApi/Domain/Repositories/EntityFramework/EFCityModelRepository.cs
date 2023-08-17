@@ -1,14 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SingnalRWebApi.Domain.Repositories.Abstract;
 using SingnalRWebApi.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace SingnalRWebApi.Domain.Repositories.EntityFramework
 {
@@ -32,12 +26,12 @@ namespace SingnalRWebApi.Domain.Repositories.EntityFramework
         }
         public async Task<City> GetCityAsync(Guid id)
         {
-            return await _context.CityEntity.Where(x => x.id.Equals(id)).FirstOrDefaultAsync();
+            return await _context.CityEntity.FirstOrDefaultAsync(x => x.id == id);
         }
 
         public async Task UpdateCityAsync(City city)
         {
-            _context.Entry(city).State = EntityState.Modified;
+            _context.CityEntity.Update(city);
             await _context.SaveChangesAsync();
         }
         public async Task DeteleCityAsync(Guid id)

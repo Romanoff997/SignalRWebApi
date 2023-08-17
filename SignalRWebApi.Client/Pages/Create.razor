@@ -1,7 +1,5 @@
 ﻿@page "/create"
 
-@inject HttpClient Http;
-@inject CitiesService _citiesService;
 <PageTitle>Add City</PageTitle>
 
 <h1>Add City</h1>
@@ -17,7 +15,7 @@
         <InputDate id="fondation" @bind-Value="newCity.fondation" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="population">fsdf</label>
+        <label for="population">Population</label>
         <InputNumber id="population" @bind-Value="newCity.population" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Create</button>

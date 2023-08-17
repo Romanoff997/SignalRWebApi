@@ -1,8 +1,6 @@
-﻿
-using Microsoft.AspNetCore.SignalR.Client;
+﻿using Microsoft.AspNetCore.SignalR.Client;
 using MyClassLib.Interface;
 using SignalRWebApi.Client.Models;
-using System;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 

@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<MyDbContext>();
 builder.Services.AddTransient<ICityModelRepository, EFCityModelRepository>(); 
 builder.Services.AddTransient<DataManager>();
