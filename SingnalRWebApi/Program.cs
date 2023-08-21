@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.SignalR;
-using MyClassLib.Interface;
-using MyClassLib.Services;
+#define SERVER
+using SingnalRWebApi.Shared.Interface;
+using SingnalRWebApi.Shared.Services;
 using SingnalRWebApi.Domain.Repositories;
 using SingnalRWebApi.Domain.Repositories.Abstract;
 using SingnalRWebApi.Domain.Repositories.EntityFramework;
@@ -33,6 +33,7 @@ builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
                    .SetIsOriginAllowed((host) => true)
                    .AllowCredentials();
         }));
+//builder.WebHost.UseStaticWebAssets();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,6 +51,8 @@ app.UseStaticFiles();
 app.MapFallbackToFile("index.html");
 
 app.MapHub<CityNotificationHub>("/CityHub");
+
+//app.UseResponseCompression();
 
 app.UseHttpsRedirection();
 

@@ -1,4 +1,4 @@
-﻿namespace MyClassLib.Interface
+﻿namespace SingnalRWebApi.Shared.Interface
 {
     public interface IJsonConverter
     {

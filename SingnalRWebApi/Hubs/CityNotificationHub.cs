@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using SingnalRWebApi.Models;
+using SingnalRWebApi.Shared.Models;
 using System.Security.Claims;
 
 namespace SingnalRWebApi.Hubs

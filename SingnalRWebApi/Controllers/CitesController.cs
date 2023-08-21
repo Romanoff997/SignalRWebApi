@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using SingnalRWebApi.Domain.Repositories;
 using SingnalRWebApi.Hubs;
-using SingnalRWebApi.Models;
+using SingnalRWebApi.Shared.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text.Json.Serialization;
@@ -33,10 +33,18 @@ namespace SingnalRWebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity(Guid id)
         {
+            try 
+            { 
             var result = await _dataManager.CityRepository.GetCityAsync(id);
             if (result == null)
                 return NotFound();
             return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound();
+            }
         }
 
 
@@ -44,7 +52,7 @@ namespace SingnalRWebApi.Controllers
         public async Task<IActionResult> CreateCity([FromBody]City city)
         {
             City newCity = await _dataManager.CityRepository.CreateCityAsync(
-                new City()
+                new ()
                 {
                     name = city.name,
                     population = city.population,

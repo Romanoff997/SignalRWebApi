@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using MyClassLib.Interface;
-using SignalRWebApi.Client.Models;
+using SingnalRWebApi.Shared.Interface;
+using System.Net.Http;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using SingnalRWebApi.Shared.Models;
 
 namespace SignalRWebApi.Client.Services
 {
@@ -39,7 +41,15 @@ namespace SignalRWebApi.Client.Services
 
         public async Task<List<City>> GetListCity()
         {
-            return await _httpClient.GetFromJsonAsync<List<City>>("/api/city");
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<City>>("/api/city");
+                return response;
+            }
+            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                return new List<City>();
+            }
         }
         public async Task<City> GetCity(Guid id)
         {

@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SingnalRWebApi.Models;
-using System.Collections.Generic;
-using System.Reflection.Emit;
+using SingnalRWebApi.Shared.Models;
 
 namespace SingnalRWebApi.Domain.Repositories
 {

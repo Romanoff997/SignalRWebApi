@@ -1,8 +1,8 @@
 ﻿
-using MyClassLib.Interface;
+using SingnalRWebApi.Shared.Interface;
 using Newtonsoft.Json;
 
-namespace MyClassLib.Services
+namespace SingnalRWebApi.Shared.Services
 {
     public class JsonNewtonConverter: IJsonConverter
     {

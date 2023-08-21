@@ -1,15 +1,11 @@
+#define CLIENT
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.DependencyInjection;
-
-using MyClassLib.Interface;
-using MyClassLib.Services;
+using SingnalRWebApi.Shared.Interface;
+using SingnalRWebApi.Shared.Services;
 using SignalRWebApi.Client;
 using SignalRWebApi.Client.Services;
-
-
-
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -23,6 +19,7 @@ builder.Services.AddSingleton<IJsonConverter>(provider => {
     return new JsonNewtonConverter();
 });
 builder.Services.AddTransient<CitiesService>();
+
 builder.Services.AddTransient<HubConnection>(provider => {
 
     return new HubConnectionBuilder()

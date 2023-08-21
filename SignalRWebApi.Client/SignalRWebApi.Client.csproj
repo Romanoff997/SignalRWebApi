@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MyClassLib\SingnalRWebApi.Shared.csproj" />
   </ItemGroup>
 

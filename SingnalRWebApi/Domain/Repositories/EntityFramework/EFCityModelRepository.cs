@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SingnalRWebApi.Domain.Repositories.Abstract;
-using SingnalRWebApi.Models;
-
-
+using SingnalRWebApi.Shared.Models;
 
 namespace SingnalRWebApi.Domain.Repositories.EntityFramework
 {

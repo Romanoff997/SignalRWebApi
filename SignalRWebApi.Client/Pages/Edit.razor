@@ -25,15 +25,16 @@
 
 
 @code {
-
-    public City newCity { get; set; }
+    public City newCity { get; set; } = new();
     [Parameter]
     public string cityId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+
         newCity = await _citiesService.GetCity(new Guid(cityId));
         StateHasChanged();
+
     }
 
     private async Task updateCity()
