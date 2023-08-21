@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "SingnalRWebApi": {
+    "SignalRWebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

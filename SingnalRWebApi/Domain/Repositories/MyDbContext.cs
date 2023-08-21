@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SingnalRWebApi.Shared.Models;
+using SignalRWebApi.Server.Models;
 
-namespace SingnalRWebApi.Domain.Repositories
+namespace SignalRWebApi.Domain.Repositories
 {
     public class MyDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "SingnalRWebApiDB");
+            optionsBuilder.UseInMemoryDatabase(databaseName: "SignalRWebApiDB");
             base.OnConfiguring(optionsBuilder);
         }
-        public DbSet<City> CityEntity { get; set; }
+        public DbSet<CityEntity> CityEntity { get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
            

@@ -1,11 +1,11 @@
-#define SERVER
-using SingnalRWebApi.Shared.Interface;
-using SingnalRWebApi.Shared.Services;
-using SingnalRWebApi.Domain.Repositories;
-using SingnalRWebApi.Domain.Repositories.Abstract;
-using SingnalRWebApi.Domain.Repositories.EntityFramework;
-using SingnalRWebApi.Hubs;
-using SingnalRWebApi.Server.Helpers;
+using Newtonsoft.Json;
+using SignalRWebApi.Domain.Repositories;
+using SignalRWebApi.Domain.Repositories.Abstract;
+using SignalRWebApi.Domain.Repositories.EntityFramework;
+using SignalRWebApi.Hubs;
+using SignalRWebApi.Server.Helpers;
+using SignalRWebApi.Shared.Interface;
+using SignalRWebApi.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,9 +21,12 @@ builder.Services.AddDbContext<MyDbContext>();
 builder.Services.AddTransient<ICityModelRepository, EFCityModelRepository>(); 
 builder.Services.AddTransient<DataManager>();
 builder.Services.AddTransient<CityNotificationHub>();
+//builder.Services.AddTransient<ICity, CityEntity>();
 builder.Services.AddSingleton<IJsonConverter>(provider => {
 
-    return new JsonNewtonConverter();
+    return new JsonNewtonConverter(new JsonSerializerSettings()
+    {
+    });
 });
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
         builder =>

@@ -1,4 +1,5 @@
-﻿namespace SingnalRWebApi.Shared.Interface
+
+﻿namespace SignalRWebApi.Shared.Interface
 {
     public interface IJsonConverter
     {

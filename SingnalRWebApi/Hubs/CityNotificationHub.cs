@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using SingnalRWebApi.Shared.Models;
-using System.Security.Claims;
+using SignalRWebApi.Server.Models;
 
-namespace SingnalRWebApi.Hubs
+namespace SignalRWebApi.Hubs
 {
     public class CityNotificationHub: Hub
     {
@@ -20,7 +19,7 @@ namespace SingnalRWebApi.Hubs
             _context = context;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task CreateCity(City city)
+        public async Task CreateCity(CityEntity city)
         {
             await _context.Clients.AllExcept(currUser).SendAsync("CreateCity", city);
         }
@@ -28,7 +27,7 @@ namespace SingnalRWebApi.Hubs
         {
             await _context.Clients.AllExcept(currUser).SendAsync("DeleteCity", cityId);
         }
-        public async Task UpdateCity(City city)
+        public async Task UpdateCity(CityEntity city)
         {
             await _context.Clients.AllExcept(currUser).SendAsync("UpdateCity", city);
         }

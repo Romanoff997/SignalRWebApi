@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using SingnalRWebApi.Shared.Interface;
-using System.Net.Http;
+using Newtonsoft.Json;
+using SignalRWebApi.Client.Models;
+using SignalRWebApi.Shared.Interface;
+using SignalRWebApi.Shared.Models;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using SingnalRWebApi.Shared.Models;
+using System.Text;
 
 namespace SignalRWebApi.Client.Services
 {
@@ -15,8 +17,8 @@ namespace SignalRWebApi.Client.Services
         private readonly HubConnection _hubConnection;
         private readonly IJsonConverter _converter;
 
-        public event Action<City> CityCreated;
-        public event Action<City> CityUpdated;
+        public event Action<CityClient> CityCreated;
+        public event Action<CityClient> CityUpdated;
         public event Action<Guid> CityDeleted;
 
         public CitiesService(HttpClient httpClient, HubConnection hubConnection, IJsonConverter converter)
@@ -26,8 +28,8 @@ namespace SignalRWebApi.Client.Services
             _converter = converter;
 
 
-            _hubConnection.On<City>("CreateCity", item => CityCreated?.Invoke(item));
-            _hubConnection.On<City>("UpdateCity", item => CityUpdated?.Invoke(item));
+            _hubConnection.On<CityClient>("CreateCity", item => CityCreated?.Invoke(item));
+            _hubConnection.On<CityClient>("UpdateCity", item => CityUpdated?.Invoke(item));
             _hubConnection.On<Guid>("DeleteCity", id => CityDeleted?.Invoke(id));
 
             _hubConnection.StartAsync();
@@ -39,30 +41,30 @@ namespace SignalRWebApi.Client.Services
         }
 
 
-        public async Task<List<City>> GetListCity()
+        public async Task<List<CityClient>> GetListCity()
         {
             try
             {
-                var response = await _httpClient.GetFromJsonAsync<List<City>>("/api/city");
+                var response = await _httpClient.GetFromJsonAsync<List<CityClient>>("/api/city");
                 return response;
             }
             catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
-                return new List<City>();
+                return new List<CityClient>();
             }
         }
-        public async Task<City> GetCity(Guid id)
+        public async Task<CityClient> GetCity(Guid id)
         {
-            return await _httpClient.GetFromJsonAsync<City>($"/api/city/{id}");
+            return await _httpClient.GetFromJsonAsync<CityClient>($"/api/city/{id}");
         }
 
-        public async Task CreateCity(City city)
+        public async Task CreateCity(CityClient city)
         {
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            await _httpClient.PostAsJsonAsync("/api/city", city);
+            await _httpClient.PostAsync("/api/city", new StringContent(_converter.WriteJson(city), Encoding.UTF8, "application/json"));
         }
 
-        public async Task UpdateCity(City city)
+        public async Task UpdateCity(CityClient city)
         {
             await _httpClient.PutAsJsonAsync($"/api/city/{city.id}", city);
         }

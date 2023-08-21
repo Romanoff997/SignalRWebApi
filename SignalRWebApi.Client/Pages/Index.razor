@@ -34,7 +34,7 @@ else
                 <tr>
                     <td>@city.name</td>
                     <td>@city.population</td>
-                    <td>@city.fondation</td>
+                    <td>@city.fondation.ToString("dd.mm.yyyy")</td>
                     <td>
                         <button @onclick="() => cityEdit(city.id)">Изменить</button>
                         <span>  </span>
@@ -49,7 +49,7 @@ else
 
 
 @code {
-    private List<City> cities = new();
+    private List<CityClient> cities { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -74,13 +74,13 @@ else
         cityDeleted(id);
     }
 
-    private void cityCreated(City city)
+    private void cityCreated(CityClient city)
     {
         cities.Add(city);
         StateHasChanged();
     }
 
-    private void cityUpdated(City city)
+    private void cityUpdated(CityClient city)
     {
         var existingItemIndex = cities.FindIndex(item => item.id == city.id);
         if (existingItemIndex != -1)

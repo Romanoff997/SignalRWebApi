@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace SingnalRWebApi.Server.Helpers
+namespace SignalRWebApi.Server.Helpers
 {
 
     public class ErrorHandlingMiddleware

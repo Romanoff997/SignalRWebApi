@@ -1,6 +1,6 @@
-﻿using SingnalRWebApi.Domain.Repositories.Abstract;
+﻿using SignalRWebApi.Domain.Repositories.Abstract;
 
-namespace SingnalRWebApi.Domain.Repositories
+namespace SignalRWebApi.Domain.Repositories
 {
     public class DataManager
     {

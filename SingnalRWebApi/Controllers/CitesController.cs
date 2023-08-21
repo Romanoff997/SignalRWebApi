@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using SingnalRWebApi.Domain.Repositories;
-using SingnalRWebApi.Hubs;
-using SingnalRWebApi.Shared.Models;
-using System.ComponentModel.DataAnnotations;
-using System.Net;
-using System.Text.Json.Serialization;
+using SignalRWebApi.Domain.Repositories;
+using SignalRWebApi.Hubs;
+using SignalRWebApi.Server.Models;
+using SignalRWebApi.Shared.Models;
 
-namespace SingnalRWebApi.Controllers
+namespace SignalRWebApi.Controllers
 {
     [Route("api/city")]
     [ApiController]
@@ -49,9 +46,9 @@ namespace SingnalRWebApi.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateCity([FromBody]City city)
+        public async Task<IActionResult> CreateCity([FromBody] CityEntity city)
         {
-            City newCity = await _dataManager.CityRepository.CreateCityAsync(
+            CityEntity newCity = await _dataManager.CityRepository.CreateCityAsync(
                 new ()
                 {
                     name = city.name,
@@ -63,7 +60,7 @@ namespace SingnalRWebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCity(City city)
+        public async Task<IActionResult> UpdateCity(CityEntity city)
         {
             await _dataManager.CityRepository.UpdateCityAsync(city);
             await _cityHub.UpdateCity(city);

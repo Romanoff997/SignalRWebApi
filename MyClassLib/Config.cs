@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SingnalRWebApi.Shared
+namespace SignalRWebApi.Shared
 {
     public class Config
     {

@@ -16,7 +16,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\MyClassLib\SingnalRWebApi.Shared.csproj" />
+    <ProjectReference Include="..\MyClassLib\SignalRWebApi.Shared.csproj" />
   </ItemGroup>
 
 </Project>

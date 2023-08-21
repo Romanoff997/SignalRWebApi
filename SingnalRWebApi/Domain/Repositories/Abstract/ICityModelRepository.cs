@@ -1,13 +1,13 @@
-﻿using SingnalRWebApi.Shared.Models;
+﻿using SignalRWebApi.Server.Models;
 
-namespace SingnalRWebApi.Domain.Repositories.Abstract
+namespace SignalRWebApi.Domain.Repositories.Abstract
 {
     public interface ICityModelRepository
     {
-        public  Task<IEnumerable<City>> GetListCityAsync();
-        public  Task<City> CreateCityAsync(City client);
-        public Task<City> GetCityAsync(Guid id);
-        public  Task UpdateCityAsync(City client);
+        public  Task<IEnumerable<CityEntity>> GetListCityAsync();
+        public  Task<CityEntity> CreateCityAsync(CityEntity client);
+        public Task<CityEntity> GetCityAsync(Guid id);
+        public  Task UpdateCityAsync(CityEntity client);
         public  Task DeteleCityAsync(Guid id);
 
     }
