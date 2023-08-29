@@ -21,11 +21,12 @@ builder.Services.AddDbContext<MyDbContext>();
 builder.Services.AddTransient<ICityModelRepository, EFCityModelRepository>(); 
 builder.Services.AddTransient<DataManager>();
 builder.Services.AddTransient<CityNotificationHub>();
-//builder.Services.AddTransient<ICity, CityEntity>();
+
 builder.Services.AddSingleton<IJsonConverter>(provider => {
 
     return new JsonNewtonConverter(new JsonSerializerSettings()
     { 
+
     });
 });
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
@@ -36,7 +37,7 @@ builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
                    .SetIsOriginAllowed((host) => true)
                    .AllowCredentials();
         }));
-//builder.WebHost.UseStaticWebAssets();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -54,8 +55,6 @@ app.UseStaticFiles();
 app.MapFallbackToFile("index.html");
 
 app.MapHub<CityNotificationHub>("/CityHub");
-
-//app.UseResponseCompression();
 
 app.UseHttpsRedirection();
 

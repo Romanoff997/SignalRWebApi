@@ -1,4 +1,3 @@
-
 namespace SignalRWebApi.Shared.Models
 {
     public class City

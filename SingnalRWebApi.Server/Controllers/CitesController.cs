@@ -2,7 +2,6 @@
 using SignalRWebApi.Domain.Repositories;
 using SignalRWebApi.Hubs;
 using SignalRWebApi.Server.Models;
-using SignalRWebApi.Shared.Models;
 
 namespace SignalRWebApi.Controllers
 {
@@ -30,18 +29,10 @@ namespace SignalRWebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity(Guid id)
         {
-            try 
-            { 
             var result = await _dataManager.CityRepository.GetCityAsync(id);
             if (result == null)
                 return NotFound();
             return Ok(result);
-            }
-            catch (Exception ex)
-            {
-
-                return NotFound();
-            }
         }
 
 

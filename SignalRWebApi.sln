@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRWebApi.Server", "SingnalRWebApi\SignalRWebApi.Server.csproj", "{1A82DAF7-26F4-4BF8-A30A-67AF34E419C7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRWebApi.Shared", "MyClassLib\SignalRWebApi.Shared.csproj", "{4F8AA55D-0840-4EFC-ADEC-5FEAEF2D8D0A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRWebApi.Client", "SignalRWebApi.Client\SignalRWebApi.Client.csproj", "{792C9224-1A45-43E1-9BC6-7E44458A3BD1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRWebApi.Shared", "SignalRWebApi.Share\SignalRWebApi.Shared.csproj", "{4C115CBD-C69C-4941-91CE-60FD2C232CA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRWebApi.Server", "SingnalRWebApi.Server\SignalRWebApi.Server.csproj", "{3BF74512-675B-41AD-ADCE-81E4C3804231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A82DAF7-26F4-4BF8-A30A-67AF34E419C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A82DAF7-26F4-4BF8-A30A-67AF34E419C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A82DAF7-26F4-4BF8-A30A-67AF34E419C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A82DAF7-26F4-4BF8-A30A-67AF34E419C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F8AA55D-0840-4EFC-ADEC-5FEAEF2D8D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F8AA55D-0840-4EFC-ADEC-5FEAEF2D8D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F8AA55D-0840-4EFC-ADEC-5FEAEF2D8D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F8AA55D-0840-4EFC-ADEC-5FEAEF2D8D0A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{792C9224-1A45-43E1-9BC6-7E44458A3BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{792C9224-1A45-43E1-9BC6-7E44458A3BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{792C9224-1A45-43E1-9BC6-7E44458A3BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{792C9224-1A45-43E1-9BC6-7E44458A3BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C115CBD-C69C-4941-91CE-60FD2C232CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C115CBD-C69C-4941-91CE-60FD2C232CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C115CBD-C69C-4941-91CE-60FD2C232CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C115CBD-C69C-4941-91CE-60FD2C232CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BF74512-675B-41AD-ADCE-81E4C3804231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BF74512-675B-41AD-ADCE-81E4C3804231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BF74512-675B-41AD-ADCE-81E4C3804231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BF74512-675B-41AD-ADCE-81E4C3804231}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

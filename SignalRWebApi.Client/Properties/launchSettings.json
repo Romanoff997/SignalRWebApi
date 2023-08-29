@@ -7,9 +7,7 @@
       "sslPort": 44330
     }
   },
-  "ApiOptions": {
-    "BaseUrl": "https://localhost:7204"
-  },
+
   "profiles": {
     "SignalRWebApi.Client": {
       "commandName": "Project",

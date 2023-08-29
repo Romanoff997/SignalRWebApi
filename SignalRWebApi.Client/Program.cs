@@ -6,18 +6,21 @@ using SignalRWebApi.Shared.Interface;
 using SignalRWebApi.Shared.Services;
 using SignalRWebApi.Client;
 using SignalRWebApi.Client.Services;
-using System.Text.Json;
 using Newtonsoft.Json;
+using SignalRWebApi.Shared;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-var jsonOptions = new JsonSerializerOptions();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7204") });
-builder.Services.AddSingleton<IJsonConverter>(provider => {
+var settings = new AppSettings();
+builder.Configuration.Bind(settings);
+builder.Services.AddSingleton(settings);
 
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(settings.BaseUrl) });
+builder.Services.AddSingleton<IJsonConverter>(provider => 
+{
     return new JsonNewtonConverter(new JsonSerializerSettings()
     {
 
@@ -28,7 +31,7 @@ builder.Services.AddTransient<CitiesService>();
 builder.Services.AddTransient<HubConnection>(provider => {
 
     return new HubConnectionBuilder()
-                .WithUrl($"https://localhost:7204/CityHub")
+                .WithUrl($"{settings.BaseUrl}/CityHub")
                 .Build();
 });
 

@@ -6,17 +6,6 @@ namespace SignalRWebApi.Client.Models
 {
     public class CityClient: City
     {
-        //public CityClient()
-        //{
-        //}
-        //public CityClient(City city) 
-        //{
-        //    id = city.id;
-        //    name = city.name;
-        //    population= city.population;
-        //    fondation = city.fondation;
-        //}
-        //public override Guid id { get; set; } = Guid.NewGuid();
 
         [DisplayName("Название города")]
         [Required, StringLength(50, ErrorMessage = "Введите название длинной не более 50 символов")]

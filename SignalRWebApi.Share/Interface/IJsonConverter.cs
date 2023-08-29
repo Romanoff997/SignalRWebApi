@@ -1,4 +1,3 @@
-
 ﻿namespace SignalRWebApi.Shared.Interface
 {
     public interface IJsonConverter
