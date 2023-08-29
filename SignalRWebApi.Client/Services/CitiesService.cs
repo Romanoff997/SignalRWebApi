@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using Newtonsoft.Json;
 using SignalRWebApi.Client.Models;
 using SignalRWebApi.Shared.Interface;
-using SignalRWebApi.Shared.Models;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
