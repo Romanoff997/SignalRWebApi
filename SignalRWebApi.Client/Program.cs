@@ -20,7 +20,7 @@ builder.Services.AddSingleton<IJsonConverter>(provider => {
 
     return new JsonNewtonConverter(new JsonSerializerSettings()
     {
-        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+
     });
 });
 builder.Services.AddTransient<CitiesService>();

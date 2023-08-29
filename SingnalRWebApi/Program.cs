@@ -25,7 +25,7 @@ builder.Services.AddTransient<CityNotificationHub>();
 builder.Services.AddSingleton<IJsonConverter>(provider => {
 
     return new JsonNewtonConverter(new JsonSerializerSettings()
-    {
+    { 
     });
 });
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
