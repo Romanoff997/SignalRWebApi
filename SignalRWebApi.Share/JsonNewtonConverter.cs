@@ -1,5 +1,4 @@
-﻿
-using SignalRWebApi.Shared.Interface;
+﻿using SignalRWebApi.Shared.Interface;
 using Newtonsoft.Json;
 
 namespace SignalRWebApi.Shared.Services

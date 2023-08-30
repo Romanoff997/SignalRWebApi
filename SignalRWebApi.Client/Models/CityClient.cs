@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace SignalRWebApi.Client.Models
 {
-    public class CityClient: City
+    public class CityViewModel: City
     {
 
         [DisplayName("Название города")]
